@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/components/my_button.dart';
 
-/// This widget represents a dialog box that allows the user to add a new task.
-/// It contains a text field for entering the task name and buttons for saving or canceling the action.
+/// This class represents a dialog box that allows the user to add a new task.
+/// It contains a text field for the user to enter the task name and two buttons:
 class DialogBox extends StatelessWidget {
-  /// This is the controller for the text field in the dialog box.
+  /// The text editing controller used to retrieve the text entered by the user.
+  /// It is passed to the dialog box to manage the text input.
   final TextEditingController controller;
+
+  /// The callback function that is called when the user clicks the "Save" button.
+  /// This function is used to save the new task entered by the user.
   final VoidCallback onSave;
+
+  /// The callback function that is called when the user clicks the "Cancel" button.
+  /// This function is used to close the dialog box without saving any changes.
   final VoidCallback onCancel;
 
-  /// This constructor initializes the DialogBox widget with a TextEditingController.
-  /// It is used to retrieve the text entered by the user when creating a new task.
-  /// The [super.key] parameter is used to pass the key to the parent class.
+  /// Constructor for the DialogBox class.
+  /// It initializes the text editing controller and the callback functions for saving and canceling.
+  /// The [key] parameter is optional and can be used to identify the widget in the widget tree.
+  /// The [controller], [onSave], and [onCancel] parameters are required.
+  /// The [controller] parameter is used to manage the text input in the dialog box.
+  /// The [onSave] and [onCancel] parameters are used to handle the actions when the user clicks the respective buttons.
+  /// The [onSave] parameter is a callback function that is called when the user clicks the "Save" button.
+  /// The [onCancel] parameter is a callback function that is called when the user clicks the "Cancel" button.
   const DialogBox({
     super.key,
     required this.controller,
@@ -19,8 +31,8 @@ class DialogBox extends StatelessWidget {
     required this.onCancel,
   });
 
-  /// This method is called when the widget is built.
-  /// It returns a widget that represents the dialog box.
+  /// This method builds the dialog box widget.
+  /// It returns an AlertDialog widget with a text field for the user to enter the task name,
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

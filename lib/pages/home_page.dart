@@ -33,10 +33,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   /// This function is called when the save button in the dialog box is pressed.
-  /// It retrieves the text from the text field and adds it to the todo list.
+  /// It retrieves the text from the text field, adds it to the todo list,
   void _onSave() {
     setState(() {
-      toDoList.add([_controller.text, false]); // Add the new task to the list
+      String trimmedText = _controller.text.trim(); // Trim the text
+      if (trimmedText.isEmpty) return; // Check if the trimmed text is empty
+      toDoList.add([trimmedText, false]); // Add the new task to the list
     });
     _controller.clear(); // Clear the text field after saving
     Navigator.pop(context); // Close the dialog box
@@ -64,7 +66,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  /// This function is called when the floating action button is pressed.
+  /// This function is called when the delete button is pressed.
+  /// It removes the task from the todo list at the specified index.
+  void deleteTask(int index) {
+    setState(() {
+      toDoList.removeAt(index);
+    });
+  }
+
+  /// This function is called when the widget is built.
+  /// It returns a Scaffold widget that contains the app bar, body, and floating action button.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +91,7 @@ class _HomePageState extends State<HomePage> {
                     taskname: toDoList[index][0],
                     taskDone: toDoList[index][1],
                     onChanged: (value) => checkBoxChange(value, index),
+                    deleteFunction: (context) => deleteTask(index),
                   );
                 },
               ),

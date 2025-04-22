@@ -6,9 +6,13 @@ void main() {
   runApp(const MainApp());
 }
 
+/// MainApp is the main entry point of the application.
+/// It sets up the MaterialApp with a custom theme and the HomePage as the initial screen.
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
+  /// This widget is the root of the application.
+  /// It sets up the MaterialApp with a custom theme and the HomePage as the initial screen.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
