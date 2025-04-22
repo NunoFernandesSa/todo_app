@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 import 'package:todo_app/pages/home_page.dart';
 
-void main() {
+void main() async {
+  /// Ensure that Flutter is initialized before using any Flutter widgets.
+  /// This is necessary to use Flutter widgets in the main function.
+  WidgetsFlutterBinding.ensureInitialized();
+
+  /// Initialize Hive for local storage.
+  /// This is necessary to use Hive for storing data locally.
+  await Hive.initFlutter();
+
+  /// Open a box named 'TODOS' for storing todo items.
+  /// This box will be used to store the todo items in the app.
+  var box = await Hive.openBox('TODOS');
+
+  /// This function is the entry point of the application.
+  /// It initializes the app and sets up the main widget.
   runApp(const MainApp());
 }
 
